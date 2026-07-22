@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   DESIGN TOKENS — Kurier Meridio Design System v1.6.0
+   DESIGN TOKENS — Kurier Meridio Design System v1.0.0
    ============================================================ */
 :root {
   /* ── BRAND COLORS ─────────────────────────────────────── */
@@ -524,7 +524,8 @@ body {
    FORM / INPUT
    ============================================================ */
 .input-group { display: flex; flex-direction: column; gap: var(--space-2); }
-.input-label { font-size: 13px; font-weight: var(--fw-semibold); color: var(--text-primary); }
+.input-label { font-size: 13px; font-weight: var(--fw-semibold); color: var(--text-primary); display: flex; align-items: center; gap: 3px; }
+.input-label .required-mark { color: var(--error-500); font-weight: var(--fw-bold); line-height: 1; }
 .input-hint { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
 .input-error-msg { font-size: 11px; color: var(--error-600); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
 .input-wrapper { position: relative; display: flex; align-items: center; }
@@ -573,6 +574,10 @@ body {
    TABLE
    ============================================================ */
 .ds-table-wrap { border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xs); }
+.ds-table-wrap-scroll { overflow-x: auto; }
+.ds-table .col-check { width: 40px; text-align: center; }
+.ds-table .col-check input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--brand-green); cursor: pointer; }
+.ds-table .col-kebab { width: 36px; text-align: center; }
 .ds-table { width: 100%; border-collapse: collapse; background: var(--surface-card); }
 .ds-table thead { background: var(--gray-50); border-bottom: 1px solid var(--border-default); }
 .ds-table th { padding: var(--space-3) var(--space-4); text-align: left; font-size: 11px; font-weight: var(--fw-bold); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
@@ -1077,6 +1082,10 @@ body {
           <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
           Princípios
         </button>
+        <button class="nav-item" onclick="showPage('handbook', this)">
+          <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><path d="M3 2.5h7.5L13 5v8.5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 6.5h5M5 9h5M5 11.5h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Handbook (PDF)
+        </button>
       </div>
 
       <div class="nav-section">
@@ -1215,7 +1224,7 @@ body {
     <div class="sidebar-footer">
       <div class="sidebar-version">
         <span>Design System</span>
-        <span class="version-badge">v1.6.0</span>
+        <span class="version-badge">v1.0.0</span>
       </div>
     </div>
   </aside>
@@ -1240,7 +1249,7 @@ body {
             <span class="hero-pill">📐 Grid 8px</span>
             <span class="hero-pill">🌿 Paleta Verde</span>
             <span class="hero-pill">♿ Acessível</span>
-            <span class="hero-pill">🏷️ v1.6.0</span>
+            <span class="hero-pill">🏷️ v1.0.0</span>
           </div>
         </div>
       </div>
@@ -1276,6 +1285,11 @@ body {
           <div class="intro-card-title">Do's & Don'ts</div>
           <div class="intro-card-desc">Exemplos visuais do que fazer e evitar ao usar os componentes.</div>
         </div>
+        <div class="intro-card" onclick="showPage('handbook', document.querySelector('[onclick*=handbook]'))">
+          <div class="intro-card-icon" style="background:var(--green-50);">📘</div>
+          <div class="intro-card-title">Handbook Completo (PDF)</div>
+          <div class="intro-card-desc">O documento estratégico completo — visualize online ou baixe o PDF original.</div>
+        </div>
       </div>
 
       <div class="section-block">
@@ -1285,6 +1299,39 @@ body {
           <div class="ds-card-sm"><div style="font-size:20px;margin-bottom:var(--space-3);">💻</div><div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">Desenvolvedores</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">Copie os tokens CSS e aplique diretamente. Nunca use valores hardcoded — use sempre a variável correspondente.</div></div>
           <div class="ds-card-sm"><div style="font-size:20px;margin-bottom:var(--space-3);">📋</div><div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">Product Managers</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">Use este sistema para alinhar expectativas e acelerar o processo de design-to-dev no refinamento de histórias.</div></div>
         </div>
+      </div>
+    </section>
+
+    <!-- ══ HANDBOOK (PDF) ═════════════════════════════════════ -->
+    <section class="ds-page" id="page-handbook">
+      <div class="page-header">
+        <div class="page-eyebrow">Documentação</div>
+        <h1 class="page-title">Handbook Completo</h1>
+        <p class="page-desc">Documento estratégico de produto que fundamenta este Design System: contexto, princípios, filosofia e diretrizes de cada componente. Versão 1.0 · Julho/2026 · Produto &amp; UX.</p>
+      </div>
+
+      <div class="section-block">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center;margin-bottom:var(--space-6);">
+          <a class="btn btn-primary btn-lg" href="./kurier-meridio-handbook-v1.pdf" download="Kurier-Meridio-Design-System-Handbook-v1.0.pdf">
+            ⬇️ Baixar PDF
+          </a>
+          <a class="btn btn-outline btn-lg" href="./kurier-meridio-handbook-v1.pdf" target="_blank" rel="noopener">
+            ↗ Abrir em nova aba
+          </a>
+          <span class="badge badge-sm badge-green" style="margin-left:auto;">v1.0 · 84 páginas</span>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:var(--space-6);">
+          <div class="ds-card-sm"><div style="font-size:20px;margin-bottom:var(--space-3);">🎯</div><div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">O que é</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">Documento oficial que registra as decisões estratégicas por trás de cada padrão deste Design System.</div></div>
+          <div class="ds-card-sm"><div style="font-size:20px;margin-bottom:var(--space-3);">👥</div><div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">Para quem</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">Product Designers, UX, PMs, Engenharia, Arquitetos de Software e Stakeholders.</div></div>
+          <div class="ds-card-sm"><div style="font-size:20px;margin-bottom:var(--space-3);">🔄</div><div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">Manutenção</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">Documento vivo — consulte o Changelog para acompanhar novas versões.</div></div>
+        </div>
+
+        <div class="subsection-title">Leitor</div>
+        <p style="font-size:12px;color:var(--text-tertiary);margin-bottom:var(--space-3);">Caso o PDF não carregue abaixo, use "Abrir em nova aba" ou "Baixar PDF" acima.</p>
+        <iframe src="./kurier-meridio-handbook-v1.pdf" title="Kurier Meridio Design System Handbook"
+          style="width:100%;height:85vh;border:1px solid var(--border-neutral);border-radius:var(--radius-lg);background:var(--surface-card);">
+        </iframe>
       </div>
     </section>
 
@@ -2311,7 +2358,10 @@ body {
           <div class="input-group"><label class="input-label">Sucesso</label><input class="form-input input-success" value="meridio@empresa.com.br"></div>
           <div class="input-group"><label class="input-label">Desabilitado</label><input class="form-input" disabled placeholder="Campo bloqueado"></div>
           <div class="input-group"><label class="input-label">Com ícone</label><div class="input-wrapper"><span class="input-prefix"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg></span><input class="form-input has-prefix" placeholder="Buscar..."></div></div>
+          <div class="input-group"><label class="input-label">Obrigatório<span class="required-mark">*</span></label><input class="form-input" placeholder="Preencha este campo" required aria-required="true"><span class="input-hint">Campo de preenchimento obrigatório</span></div>
+          <div class="input-group"><label class="input-label">Obrigatório + Erro<span class="required-mark">*</span></label><input class="form-input input-error" required aria-required="true" aria-invalid="true"><span class="input-error-msg">⚠ Este campo é obrigatório.</span></div>
         </div>
+        <div class="section-desc" style="margin-top:var(--space-4);">Campos obrigatórios recebem um <strong>asterisco vermelho</strong> (<code>--error-500</code>) logo após o texto do label, sempre com <code>aria-required="true"</code> no input para leitores de tela. O asterisco nunca substitui o texto — nunca use apenas "*" sem label associado. Quando um campo obrigatório não é preenchido e o formulário é submetido, ele deve assumir o estado de <strong>Erro</strong> (borda <code>--error-500</code> + <code>.input-error-msg</code>) explicando o que falta.</div>
       </div>
       <div class="section-block">
         <div class="subsection-title">Select, Textarea & Toggles</div>
@@ -2400,6 +2450,30 @@ body {
               <tr><td style="font-weight:600">Relatório ESG</td><td><span class="badge badge-sm badge-gray badge-square">Sustentabilidade</span></td><td>Bruno Lima</td><td><span class="badge badge-sm badge-amber badge-dot">Em progresso</span></td><td style="font-size:12px;color:var(--warning-700);font-weight:700;">⏰ 2 dias</td><td class="col-actions"><button class="btn btn-ghost btn-xs" aria-label="Ver detalhes de Relatório ESG"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></td></tr>
               <tr><td style="font-weight:600">Certificação ISO</td><td><span class="badge badge-sm badge-gray badge-square">Qualidade</span></td><td>Carla Melo</td><td><span class="badge badge-sm badge-lime badge-dot">Aguardando</span></td><td style="font-size:12px;color:var(--text-tertiary)">30/06/2025</td><td class="col-actions"><button class="btn btn-ghost btn-xs" aria-label="Ver detalhes de Certificação ISO"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></td></tr>
               <tr><td style="font-weight:600">Revisão Contrato</td><td><span class="badge badge-sm badge-gray badge-square">Jurídico</span></td><td>Diego Ramos</td><td><span class="badge badge-sm badge-red badge-dot">Vencido</span></td><td style="font-size:12px;color:var(--error-600);font-weight:700;">⚠ Vencido</td><td class="col-actions"><button class="btn btn-ghost btn-xs" aria-label="Ver detalhes de Revisão Contrato"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="subsection-title">Tabela densa com seleção — múltiplas colunas</div>
+        <div class="section-desc" style="margin-bottom:var(--space-4);">Variante usada em listagens de processos, com <strong>checkbox de seleção</strong> (individual e "selecionar todos" no header), mais colunas de dados e menu de ações em <strong>kebab (⋮)</strong> no lugar do ícone de visualizar. Use quando a tela precisar de ações em lote (exportar, arquivar, excluir selecionados). A tabela rola horizontalmente em telas estreitas — <code>.ds-table-wrap-scroll</code>.</div>
+        <div class="ds-table-wrap ds-table-wrap-scroll">
+          <table class="ds-table">
+            <thead>
+              <tr>
+                <th>Código</th><th>Número Cliente</th><th>Nome Cliente</th><th>Nome</th><th>Número Processo</th><th>Status</th><th>Natureza Ação</th><th>Unidade</th><th>Distribuição</th>
+                <th class="col-check"><input type="checkbox" aria-label="Selecionar todos os itens"></th>
+                <th class="col-kebab"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>29866</td><td>22.337.876-0</td><td>ID do Brasil LTDSA</td><td>Acordo Convenção</td><td style="white-space:nowrap;">76254.8753436.8-00</td><td><span class="badge badge-sm badge-green badge-dot">Ativo</span></td><td>Auto Infração</td><td>Trabalhista</td><td>25/06/2026</td><td class="col-check"><input type="checkbox" aria-label="Selecionar item 29866"></td><td class="col-kebab"><button class="btn btn-icon btn-ghost btn-xs" aria-label="Mais ações"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td></tr>
+              <tr><td>30142</td><td>19.204.551-2</td><td>Malta Engenharia SA</td><td>Reclamação Trabalhista</td><td style="white-space:nowrap;">51298.4471820.2-00</td><td><span class="badge badge-sm badge-amber badge-dot">Em andamento</span></td><td>Rescisão Indireta</td><td>Trabalhista</td><td>18/06/2026</td><td class="col-check"><input type="checkbox" aria-label="Selecionar item 30142"></td><td class="col-kebab"><button class="btn btn-icon btn-ghost btn-xs" aria-label="Mais ações"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td></tr>
+              <tr><td>28710</td><td>07.815.293-4</td><td>Comércio Vale Verde LTDA</td><td>Execução Fiscal</td><td style="white-space:nowrap;">88410.2296173.5-00</td><td><span class="badge badge-sm badge-lime badge-dot">Aguardando</span></td><td>Cobrança Tributária</td><td>Tributário</td><td>02/06/2026</td><td class="col-check"><input type="checkbox" aria-label="Selecionar item 28710"></td><td class="col-kebab"><button class="btn btn-icon btn-ghost btn-xs" aria-label="Mais ações"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td></tr>
+              <tr><td>31007</td><td>44.109.887-6</td><td>Ana Paula Ferreira</td><td>Ação Previdenciária</td><td style="white-space:nowrap;">63921.5510044.1-00</td><td><span class="badge badge-sm badge-gray badge-dot">Suspenso</span></td><td>Aposentadoria por Invalidez</td><td>Previdenciário</td><td>29/05/2026</td><td class="col-check"><input type="checkbox" aria-label="Selecionar item 31007"></td><td class="col-kebab"><button class="btn btn-icon btn-ghost btn-xs" aria-label="Mais ações"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td></tr>
+              <tr><td>29866</td><td>22.337.876-0</td><td>ID do Brasil LTDSA</td><td>Acordo Convenção</td><td style="white-space:nowrap;">76254.8753436.8-00</td><td><span class="badge badge-sm badge-green badge-dot">Ativo</span></td><td>Auto Infração</td><td>Trabalhista</td><td>25/06/2026</td><td class="col-check"><input type="checkbox" checked aria-label="Selecionar item 29866"></td><td class="col-kebab"><button class="btn btn-icon btn-ghost btn-xs" aria-label="Mais ações"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td></tr>
+              <tr><td>27554</td><td>33.667.410-9</td><td>Construtora Horizonte LTDA</td><td>Ação Civil Pública</td><td style="white-space:nowrap;">40187.3369205.7-00</td><td><span class="badge badge-sm badge-red badge-dot">Vencido</span></td><td>Dano Ambiental</td><td>Cível</td><td>11/05/2026</td><td class="col-check"><input type="checkbox" aria-label="Selecionar item 27554"></td><td class="col-kebab"><button class="btn btn-icon btn-ghost btn-xs" aria-label="Mais ações"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td></tr>
             </tbody>
           </table>
         </div>
@@ -3292,94 +3366,20 @@ body {
         <div style="display:flex;flex-direction:column;gap:var(--space-6);">
 
           <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-green">v1.6.0</span></div>
-            <div style="flex:1;border-left:2px solid var(--border-subtle);padding-left:var(--space-5);padding-bottom:var(--space-6);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Versão atual</div>
-              <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Página <strong>Gráficos</strong> alinhada à versão mais recente do <strong>Kurier Analytics</strong>: títulos de seção sem numeração, botão de copiar em cada swatch da Shared Chart Palette.</li>
-                <li>Seção "Paleta por produto" com o card <strong>Meridio Chart Palette</strong> — 10 tons de verde da marca, nunca roxo/azul.</li>
-                <li>Nova seção <strong>"Exemplos aplicados — dashboard real"</strong>: 4 cards de dashboard totalmente interativos e data-driven (donut, barras, pizza, tabela), com seletor de tipo de gráfico funcional — cada um segue a regra do Guia de aplicação (Shared Palette, tons do produto ou destaque de série principal).</li>
-                <li>Corrigida a regra de "Destaque de série principal" para usar a cor 01 do <em>produto</em> (verde) e não a cor 01 da Shared Palette (azul), mantendo consistência com o texto do Guia.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-gray">v1.5.0</span></div>
-            <div style="flex:1;border-left:2px solid var(--border-subtle);padding-left:var(--space-5);padding-bottom:var(--space-6);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Reestruturação (Kurier Tecnologia)</div>
-              <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Página <strong>Gráficos</strong> reestruturada em 5 seções numeradas, alinhada ao padrão do <strong>Kurier Tecnologia</strong>: Shared Chart Palette, Paleta por produto, Guia de aplicação, Paleta divergente e Acessibilidade/contraste.</li>
-                <li>Seção 2 (<strong>Paleta por produto</strong>) documentada como card "Meridio Chart Palette" — 10 tons de verde da marca, nunca azul.</li>
-                <li>Guia de aplicação reescrito com ícones e tiras de cor por caso de uso (comparação, séries temporais, heatmap, destaque, positivo/negativo).</li>
-                <li>Adicionado bloco de <strong>Notas importantes</strong>, consistente com os demais produtos Kurier.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-gray">v1.4.0</span></div>
-            <div style="flex:1;border-left:2px solid var(--border-subtle);padding-left:var(--space-5);padding-bottom:var(--space-6);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Paleta de dados oficial</div>
-              <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Paleta de gráficos atualizada para a <strong>Meridio Chart Palette</strong> oficial (10 tons de verde), alinhada ao <em>Kurier Data Visualization Palette</em>.</li>
-                <li>Nova seção <strong>Shared Chart Palette</strong> (20 cores) documentada na página Gráficos, para gráficos sem associação a um único produto.</li>
-                <li>Paleta divergente atualizada para o padrão compartilhado Kurier: vermelho → cinza neutro → <strong>teal</strong> (em vez de vermelho → verde), evitando confusão com a cor de marca.</li>
-                <li>Os 4 gráficos de exemplo (barras, linhas, donut, variação semanal) recoloridos para usar apenas tokens das paletas oficiais.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-gray">v1.3.0</span></div>
-            <div style="flex:1;border-left:2px solid var(--border-subtle);padding-left:var(--space-5);padding-bottom:var(--space-6);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Motion, Voz & Tom, acessibilidade</div>
-              <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Novos tokens de <strong>Motion</strong> (<code>--duration-*</code>, <code>--ease-*</code>) e nova página Motion em Fundação.</li>
-                <li>Novos tokens de <strong>Breakpoints</strong> (<code>--bp-*</code>) documentados na página Dimensões & Grid.</li>
-                <li>Nova página <strong>Voz & Tom</strong> em Guias, com diretrizes de microcopy.</li>
-                <li>Página <strong>Acessibilidade</strong> movida de Fundação para Guias, alinhando com o padrão Kurier.</li>
-                <li>Atributos <code>aria-*</code>/<code>role</code> adicionados aos exemplos de código dos componentes.</li>
-                <li><strong>Empty & Loading States</strong> separada em duas páginas: Empty States e Skeleton / Loading.</li>
-                <li>Removida a duplicidade <code>--gray-*</code> / <code>--neutral-*</code>; <code>--gray-*</code> passa a ser a única escala de cinza.</li>
-                <li>Tokens de papel da escala verde (<code>--green-code</code>, <code>--green-safety</code>, <code>--green-protocol</code> etc.) agora referenciam a escala numérica via <code>var()</code>, eliminando hex duplicado.</li>
-                <li>Adoção de semver completo (<code>MAJOR.MINOR.PATCH</code>) no versionamento do design system.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-gray">v1.2.0</span></div>
-            <div style="flex:1;border-left:2px solid var(--border-subtle);padding-left:var(--space-5);padding-bottom:var(--space-6);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Ícones & componentes</div>
-              <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Biblioteca de <strong>Icons</strong> com 1.297 ícones em 3 variações (Outline, Bold, Duotone), com busca, filtro por categoria e cópia de SVG/nome.</li>
-                <li>Marca Meridio atualizada: ícone e wordmark oficiais aplicados no menu, introdução e página Marca & Logo.</li>
-                <li>Nova página de <strong>Acessibilidade</strong>, com exemplos de contraste, foco visível e navegação por teclado.</li>
-                <li>Novos componentes: <strong>Modal & Dialog</strong>, <strong>Dropdown & Menu</strong>, <strong>Toast</strong>, <strong>Accordion</strong>, <strong>Breadcrumbs</strong> e <strong>Empty & Loading States</strong>.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-gray">v1.1.0</span></div>
-            <div style="flex:1;border-left:2px solid var(--border-subtle);padding-left:var(--space-5);padding-bottom:var(--space-6);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Marca & rebrand</div>
-              <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Documentação da marca Meridio: anatomia, versões (isolada e com selo Kurier) e regras de uso.</li>
-                <li>Seção dedicada à marca K-IA, incluindo variações do ícone de spark e regras de tamanho.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:var(--space-5);">
-            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-gray">v1.0.0</span></div>
+            <div style="flex-shrink:0;width:64px;"><span class="badge badge-sm badge-green">v1.0.0</span></div>
             <div style="flex:1;padding-left:var(--space-5);padding-bottom:var(--space-2);">
-              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Primeira versão</div>
+              <div style="font-size:13px;color:var(--text-tertiary);margin-bottom:6px;">Versão atual — primeira versão consolidada</div>
               <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0;">
-                <li>Fundação inicial: cores, tipografia, espaçamentos, grid, border radius e sombras.</li>
-                <li>Componentes essenciais: botões, inputs, badges, alertas, tabelas, cards e gráficos.</li>
-                <li>Boas práticas e Do's & Don'ts gerais do design system.</li>
+                <li><strong>Fundação:</strong> cores (Sinal Green, escala verde da marca, escala de cinza <code>--gray-*</code> como fonte única), tipografia, espaçamentos, grid e breakpoints (<code>--bp-*</code>), border radius, sombras e tokens de <strong>Motion</strong> (<code>--duration-*</code>, <code>--ease-*</code>).</li>
+                <li><strong>Marca:</strong> documentação da marca Meridio (anatomia, versões isolada e com selo Kurier, regras de uso) e da marca K-IA, com variações do ícone de spark em 3 estilos e 7 tamanhos.</li>
+                <li><strong>Ícones:</strong> biblioteca com 1.297 ícones em 3 variações (Outline, Bold, Duotone), com busca, filtro por categoria e cópia de SVG/nome.</li>
+                <li><strong>Componentes essenciais:</strong> botões (variantes, tamanhos, estados incluindo loading/disabled), badges, alertas, cards, Modal & Dialog, Dropdown & Menu, Toast, Accordion, Breadcrumbs, Empty States e Skeleton/Loading.</li>
+                <li><strong>Inputs & Forms:</strong> estados padrão, focus, erro, sucesso, desabilitado, com ícone e o novo estado <strong>Campo obrigatório</strong> (asterisco em <code>--error-500</code> + <code>aria-required</code>), select, textarea, checkboxes e toggles.</li>
+                <li><strong>Tabelas:</strong> variante padrão com hover e ações no hover, e nova variante <strong>densa com seleção</strong> — checkbox individual e "selecionar todos", mais colunas de dados e menu de ações em kebab (⋮), com rolagem horizontal para telas estreitas.</li>
+                <li><strong>Gráficos:</strong> Shared Chart Palette (20 cores), Meridio Chart Palette oficial (10 tons de verde — nunca azul/roxo), paleta divergente vermelho → cinza → teal, Guia de aplicação por caso de uso e 4 cards de dashboard interativos e data-driven (donut, barras, pizza, tabela) com seletor de tipo de gráfico.</li>
+                <li><strong>Acessibilidade:</strong> exemplos de contraste, foco visível, navegação por teclado e atributos <code>aria-*</code>/<code>role</code> em todos os exemplos de código.</li>
+                <li><strong>Guias:</strong> Voz & Tom (microcopy), boas práticas e Do's & Don'ts gerais do design system.</li>
+                <li>Adoção de semver completo (<code>MAJOR.MINOR.PATCH</code>) no versionamento do design system.</li>
               </ul>
             </div>
           </div>
