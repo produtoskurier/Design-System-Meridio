@@ -50,7 +50,7 @@
   --gray-0:    #FFFFFF;
   --gray-50:   #FFFFFF;
   --gray-100:  #F4F7F0;
-  --gray-200:  #E5E7EA;
+  --gray-200:  #E2E9D8;
   --gray-300:  #D0DAC0;
   --gray-400:  #8A9E78;
   --gray-500:  #637A52;
@@ -1553,11 +1553,20 @@ body {
         <div class="subsection-title">Escala Grey (oficial da marca)</div>
         <div class="section-desc">Escala de 10 tons com tinte verde alinhado à identidade Meridio — de <strong>50</strong> (quase branco) a <strong>900</strong> (quase preto). Base dos tokens <code>--gray-*</code> usados em texto, bordas, superfícies e estados neutros em todo o sistema. Clique para copiar o hex.</div>
 
+        <div class="ds-card" style="background:var(--green-50);border:1px solid var(--gray-300);padding:var(--space-4);margin-bottom:var(--space-5);">
+          <div style="font-size:12px;font-weight:700;color:var(--gray-700);text-transform:uppercase;letter-spacing:.04em;margin-bottom:var(--space-2);">⚠️ Regra da escala — por que isso importa</div>
+          <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin:0;">
+            Nenhum tom desta escala pode ser um cinza neutro "importado" (sem tinte de marca) — cada passo é interpolado a partir dos vizinhos, sempre puxando para o verde do Meridio.
+            O <strong>Gray 200</strong> chegou a ser cadastrado como <code>#E5E7EA</code>, um cinza-azulado neutro que não segue essa regra e quebrava a progressão entre o <strong>Gray 100</strong> (<code>#F4F7F0</code>) e o <strong>Gray 300</strong> (<code>#D0DAC0</code>).
+            Foi corrigido para <code>#E2E9D8</code>, calculado por interpolação direta entre os dois vizinhos — mantendo o tinte verde consistente em toda a escala.
+          </p>
+        </div>
+
         <!-- Barra visual de escala -->
         <div class="scale-row" style="margin-bottom:var(--space-4);">
-          <div class="scale-stop" style="background:#FFFFFF;border:1px solid #E5E7EA" onclick="copyColor('#FFFFFF',this)"><span class="scale-stop-label" style="color:#445938">50</span></div>
-          <div class="scale-stop" style="background:#F4F7F0;border:1px solid #E5E7EA" onclick="copyColor('#F4F7F0',this)"><span class="scale-stop-label" style="color:#445938">100</span></div>
-          <div class="scale-stop" style="background:#E5E7EA" onclick="copyColor('#E5E7EA',this)"><span class="scale-stop-label" style="color:#445938">200</span></div>
+          <div class="scale-stop" style="background:#FFFFFF;border:1px solid #E2E9D8" onclick="copyColor('#FFFFFF',this)"><span class="scale-stop-label" style="color:#445938">50</span></div>
+          <div class="scale-stop" style="background:#F4F7F0;border:1px solid #E2E9D8" onclick="copyColor('#F4F7F0',this)"><span class="scale-stop-label" style="color:#445938">100</span></div>
+          <div class="scale-stop" style="background:#E2E9D8" onclick="copyColor('#E2E9D8',this)"><span class="scale-stop-label" style="color:#445938">200</span></div>
           <div class="scale-stop" style="background:#D0DAC0" onclick="copyColor('#D0DAC0',this)"><span class="scale-stop-label" style="color:#2D3D24">300</span></div>
           <div class="scale-stop" style="background:#8A9E78" onclick="copyColor('#8A9E78',this)"><span class="scale-stop-label" style="color:#1A2514">400</span></div>
           <div class="scale-stop" style="background:#637A52" onclick="copyColor('#637A52',this)"><span class="scale-stop-label" style="color:#fff">500</span></div>
@@ -1569,9 +1578,9 @@ body {
 
         <!-- Swatches com uso -->
         <div class="color-grid">
-          <div class="color-card" onclick="copyColor('#FFFFFF',this)"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #E5E7EA;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#FFFFFF',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#445938" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#445938" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 50</div><div class="color-hex">#FFFFFF</div><div class="color-usage">--gray-50 · Fundo, cards</div></div></div>
-          <div class="color-card" onclick="copyColor('#F4F7F0',this)"><div class="color-swatch" style="background:#F4F7F0;border:1px solid #E5E7EA;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#F4F7F0',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#445938" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#445938" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 100</div><div class="color-hex">#F4F7F0</div><div class="color-usage">--gray-100 · Superfícies</div></div></div>
-          <div class="color-card" onclick="copyColor('#E5E7EA',this)"><div class="color-swatch" style="background:#E5E7EA;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#E5E7EA',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#445938" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#445938" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 200</div><div class="color-hex">#E5E7EA</div><div class="color-usage">--gray-200 · Bordas claras</div></div></div>
+          <div class="color-card" onclick="copyColor('#FFFFFF',this)"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #E2E9D8;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#FFFFFF',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#445938" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#445938" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 50</div><div class="color-hex">#FFFFFF</div><div class="color-usage">--gray-50 · Fundo, cards</div></div></div>
+          <div class="color-card" onclick="copyColor('#F4F7F0',this)"><div class="color-swatch" style="background:#F4F7F0;border:1px solid #E2E9D8;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#F4F7F0',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#445938" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#445938" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 100</div><div class="color-hex">#F4F7F0</div><div class="color-usage">--gray-100 · Superfícies</div></div></div>
+          <div class="color-card" onclick="copyColor('#E2E9D8',this)"><div class="color-swatch" style="background:#E2E9D8;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#E2E9D8',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#445938" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#445938" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 200</div><div class="color-hex">#E2E9D8</div><div class="color-usage">--gray-200 · Bordas claras</div></div></div>
           <div class="color-card" onclick="copyColor('#D0DAC0',this)"><div class="color-swatch" style="background:#D0DAC0;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#D0DAC0',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#1A2514" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#1A2514" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 300</div><div class="color-hex">#D0DAC0</div><div class="color-usage">--gray-300 · Divisórias, bordas de campo</div></div></div>
           <div class="color-card" onclick="copyColor('#8A9E78',this)"><div class="color-swatch" style="background:#8A9E78;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#8A9E78',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 400</div><div class="color-hex">#8A9E78</div><div class="color-usage">--gray-400 · Ícones secundários, texto terciário</div></div></div>
           <div class="color-card" onclick="copyColor('#637A52',this)"><div class="color-swatch" style="background:#637A52;"><button class="color-copy-btn" onclick="event.stopPropagation();copyColor('#637A52',this.closest('.color-card'))"><svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M3 11V3h8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="color-info"><div class="color-name">Gray 500</div><div class="color-hex">#637A52</div><div class="color-usage">--gray-500 · Texto de suporte</div></div></div>
@@ -1587,9 +1596,9 @@ body {
           <table class="token-table">
             <thead><tr><th style="width:20px"></th><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
             <tbody>
-              <tr><td><span class="token-dot" style="background:#FFFFFF;border:1px solid #E5E7EA;display:block"></span></td><td><code class="token-name-code">--gray-50</code></td><td><code class="token-val-code">#FFFFFF · Gray 50</code></td><td style="font-size:12px;color:var(--text-secondary)">Fundo de cards e superfícies (ver <code>--surface-card</code>)</td></tr>
-              <tr><td><span class="token-dot" style="background:#F4F7F0;border:1px solid #E5E7EA;display:block"></span></td><td><code class="token-name-code">--gray-100</code></td><td><code class="token-val-code">#F4F7F0 · Gray 100</code></td><td style="font-size:12px;color:var(--text-secondary)">Barra de abas, hover de linha, superfícies sutis</td></tr>
-              <tr><td><span class="token-dot" style="background:#E5E7EA;display:block"></span></td><td><code class="token-name-code">--gray-200</code></td><td><code class="token-val-code">#E5E7EA · Gray 200</code></td><td style="font-size:12px;color:var(--text-secondary)">Divisórias internas, bordas leves</td></tr>
+              <tr><td><span class="token-dot" style="background:#FFFFFF;border:1px solid #E2E9D8;display:block"></span></td><td><code class="token-name-code">--gray-50</code></td><td><code class="token-val-code">#FFFFFF · Gray 50</code></td><td style="font-size:12px;color:var(--text-secondary)">Fundo de cards e superfícies (ver <code>--surface-card</code>)</td></tr>
+              <tr><td><span class="token-dot" style="background:#F4F7F0;border:1px solid #E2E9D8;display:block"></span></td><td><code class="token-name-code">--gray-100</code></td><td><code class="token-val-code">#F4F7F0 · Gray 100</code></td><td style="font-size:12px;color:var(--text-secondary)">Barra de abas, hover de linha, superfícies sutis</td></tr>
+              <tr><td><span class="token-dot" style="background:#E2E9D8;display:block"></span></td><td><code class="token-name-code">--gray-200</code></td><td><code class="token-val-code">#E2E9D8 · Gray 200</code></td><td style="font-size:12px;color:var(--text-secondary)">Divisórias internas, bordas leves</td></tr>
               <tr><td><span class="token-dot" style="background:#D0DAC0;display:block"></span></td><td><code class="token-name-code">--gray-300</code></td><td><code class="token-val-code">#D0DAC0 · Gray 300</code></td><td style="font-size:12px;color:var(--text-secondary)">Bordas de campo e painel (= <code>--border-default</code>)</td></tr>
               <tr><td><span class="token-dot" style="background:#8A9E78;display:block"></span></td><td><code class="token-name-code">--gray-400</code></td><td><code class="token-val-code">#8A9E78 · Gray 400</code></td><td style="font-size:12px;color:var(--text-secondary)">Ícones secundários, placeholder (= <code>--text-tertiary</code>)</td></tr>
               <tr><td><span class="token-dot" style="background:#637A52;display:block"></span></td><td><code class="token-name-code">--gray-500</code></td><td><code class="token-val-code">#637A52 · Gray 500</code></td><td style="font-size:12px;color:var(--text-secondary)">Texto de suporte, metadados</td></tr>
@@ -3601,7 +3610,7 @@ window.__ICONS_DATA__ = [{"category":"Arrows","index":1,"name":"arrows-01","svg"
   var PALETTE_SHARED = ['#0A83F9','#6F2FDE','#ABDD29','#32F1DA','#FF9F1C','#F4C542','#F06292','#FF6B6B','#4BAEFF','#00C389'];
   /* Mesma sequência de 9 tons usada no card "Séries temporais / tendências" do Guia de aplicação */
   var PALETTE_TREND = ['#1F3C18','#255019','#4E7F1D','#689D21','#ABDD29','#8BC34A','#C7ED5C','#DFF695','#F0FAC5'];
-  var NEUTRAL_A = '#E5E7EA'; // --gray-200
+  var NEUTRAL_A = '#E2E9D8'; // --gray-200
   var NEUTRAL_B = '#D0DAC0'; // --gray-300
   var OTHER_COLOR = '#D0DAC0';
   var PRODUCT_PRIMARY = '#ABDD29'; // cor 01 do produto (Meridio Green)
